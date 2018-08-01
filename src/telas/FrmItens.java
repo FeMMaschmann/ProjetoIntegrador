@@ -22,11 +22,44 @@ public class FrmItens extends javax.swing.JInternalFrame {
     /**
      * Creates new form FrmFornecedores
      */
+    
+    private boolean novo;
+    private ObjItens itens;
+    private ListItens telaItens;
+    private List<ObjFornecedor> listaFnd;
+    
+    
     public FrmItens() {
         initComponents();
         carregarFornecedores();
         lblCodigo.setText("");
+        novo = true;
     }
+    
+    public FrmItens(int codigo, ListItens telaItens) {
+        initComponents();
+        carregarFornecedores();
+        lblCodigo.setText("");
+        novo = false;
+        this.telaItens = telaItens;
+    }
+    
+    private void carregarItens(){
+        int q = itens.getQuantidade();
+        txtNome.setText(itens.getNome());
+        txtQuantidade.setText( String.valueOf(q));
+        lblCodigo.setText( String.valueOf( itens.getCodigo() ) );
+        
+        for (int i = 1; i < listaFnd.size() ; i++) {
+            ObjFornecedor fnd = listaFnd.get( i );
+            if( fnd.getCodigo() == itens.getFornecedor().getCodigo() ){
+                cmbFornecedor.setSelectedIndex( i );
+                break;
+            }
+        }
+        
+    }
+    
 
     private void carregarFornecedores(){
         List<ObjFornecedor> listaDeFornecedores = FornecedorDAO.getFornecedores();
@@ -194,7 +227,14 @@ public class FrmItens extends javax.swing.JInternalFrame {
             ite.setQuantidade(q);
             ite.setFornecedor(fornecedor);
         
-            ItensDAO.inserir(ite);
+          if(novo){
+              ItensDAO.inserir(ite);
+          }else{
+              ite.setCodigo(Integer.valueOf(lblCodigo.getText()));
+              ItensDAO.editar(ite);
+              telaItens.carregarTabela();
+              this.dispose();
+          }
         }
         limparFormulario();
     }//GEN-LAST:event_btnSalvarActionPerformed

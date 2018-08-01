@@ -7,6 +7,7 @@ package telas;
 
 import dao.ItensDAO;
 import java.util.List;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ObjItens;
@@ -20,12 +21,17 @@ public class ListItens extends javax.swing.JInternalFrame {
     /**
      * Creates new form ListCategoria
      */
-    public ListItens() {
+    
+    
+    private JDesktopPane telaPrincipal;
+    
+    public ListItens( JDesktopPane telaPrincipal) {
         initComponents();
+        this.telaPrincipal = telaPrincipal;
         carregarTabela();
     }
     
-    private void carregarTabela(){
+    public void carregarTabela(){
         DefaultTableModel modelo = new DefaultTableModel();
         String[] colunas = {"Código", "Nome", "Quantidade", "Fornecedor"};
         modelo.setColumnIdentifiers(colunas);
@@ -77,6 +83,11 @@ public class ListItens extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tableItens);
 
         btnEditar.setText("EDITAR");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setText("EXCLUIR");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -136,6 +147,20 @@ public class ListItens extends javax.swing.JInternalFrame {
             carregarTabela();
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int linha = tableItens.getSelectedRow();
+        if( linha == -1 ){
+            JOptionPane.showMessageDialog(this, "Você deve selecionar um item!!");
+        }else{
+            int codigo = (int) tableItens.getValueAt(linha, 0);
+            FrmItens FRM = new FrmItens( codigo, this );
+            this.telaPrincipal.add( FRM );
+            FRM.setVisible( true );
+            
+        }
+        
+    }//GEN-LAST:event_btnEditarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
