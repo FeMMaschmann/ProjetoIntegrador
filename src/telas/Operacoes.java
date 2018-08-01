@@ -5,9 +5,11 @@
  */
 package telas;
 
+import dao.ItensDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDesktopPane;
+import javax.swing.table.DefaultTableModel;
 import model.ObjItens;
 
 /**
@@ -28,6 +30,21 @@ public class Operacoes extends javax.swing.JInternalFrame {
         this.painelTelaInicial = painelTelaInicial;
         listaItens = new ArrayList<>();
     }
+    
+    public void carregarTabela(){
+        DefaultTableModel modelo = new DefaultTableModel();
+        String[] colunas = { "Nome", "Quantidade"};
+        modelo.setColumnIdentifiers(colunas);
+        for(ObjItens ite : listaItens){
+            Object[] obj = { 
+                ite.getNome(), 
+                ite.getQuantidade()
+            };
+            modelo.addRow(obj);
+        }
+        tableItens.setModel(modelo);
+        
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -40,8 +57,9 @@ public class Operacoes extends javax.swing.JInternalFrame {
 
         BtnAdd = new javax.swing.JButton();
         BtnExc = new javax.swing.JButton();
-        tableItens = new javax.swing.JPanel();
         BtnFim = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tableItens = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(102, 102, 102));
         setClosable(true);
@@ -60,38 +78,46 @@ public class Operacoes extends javax.swing.JInternalFrame {
 
         BtnExc.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BtnExc.setText("Excluir Item");
-
-        javax.swing.GroupLayout tableItensLayout = new javax.swing.GroupLayout(tableItens);
-        tableItens.setLayout(tableItensLayout);
-        tableItensLayout.setHorizontalGroup(
-            tableItensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
-        );
-        tableItensLayout.setVerticalGroup(
-            tableItensLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 275, Short.MAX_VALUE)
-        );
+        BtnExc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnExcActionPerformed(evt);
+            }
+        });
 
         BtnFim.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BtnFim.setText("Finalizar Operação");
+
+        tableItens.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane1.setViewportView(tableItens);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(57, 57, 57)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(tableItens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(BtnAdd)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 126, Short.MAX_VALUE)
-                        .addComponent(BtnExc)))
-                .addGap(77, 77, 77))
             .addGroup(layout.createSequentialGroup()
-                .addGap(168, 168, 168)
-                .addComponent(BtnFim)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(BtnAdd)
+                                .addGap(228, 228, 228)
+                                .addComponent(BtnExc))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(209, 209, 209)
+                        .addComponent(BtnFim)))
+                .addGap(0, 42, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -101,10 +127,10 @@ public class Operacoes extends javax.swing.JInternalFrame {
                     .addComponent(BtnAdd)
                     .addComponent(BtnExc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(tableItens, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(BtnFim)
-                .addContainerGap())
+                .addContainerGap(56, Short.MAX_VALUE))
         );
 
         pack();
@@ -116,11 +142,16 @@ public class Operacoes extends javax.swing.JInternalFrame {
         tela.setVisible(true);
     }//GEN-LAST:event_BtnAddActionPerformed
 
+    private void BtnExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcActionPerformed
+        
+    }//GEN-LAST:event_BtnExcActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnAdd;
     private javax.swing.JButton BtnExc;
     private javax.swing.JButton BtnFim;
-    private javax.swing.JPanel tableItens;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tableItens;
     // End of variables declaration//GEN-END:variables
 }

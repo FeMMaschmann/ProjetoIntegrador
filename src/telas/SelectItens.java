@@ -27,11 +27,11 @@ public class SelectItens extends javax.swing.JInternalFrame {
     
     public SelectItens(Operacoes telaOperacoes) {
         initComponents();
-        carregarFornecedores();
+        carregarItens();
         this.telaOperacoes = telaOperacoes;
     }
     
-    private void carregarFornecedores(){
+    private void carregarItens(){
         List<ObjItens> listaDeItens = ItensDAO.getItens();
         ObjItens fake = new ObjItens(0, "Selecione...");
         listaDeItens.add(0,fake);
@@ -53,7 +53,7 @@ public class SelectItens extends javax.swing.JInternalFrame {
     private void initComponents() {
 
         jLabel1 = new javax.swing.JLabel();
-        btnEditar = new javax.swing.JButton();
+        btnSelect = new javax.swing.JButton();
         cmbItem = new javax.swing.JComboBox<>();
         jLabel5 = new javax.swing.JLabel();
         txtQuantidade = new javax.swing.JTextField();
@@ -67,11 +67,11 @@ public class SelectItens extends javax.swing.JInternalFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Itens Cadastrados:");
 
-        btnEditar.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        btnEditar.setText("SELECIONAR");
-        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+        btnSelect.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        btnSelect.setText("SELECIONAR");
+        btnSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarActionPerformed(evt);
+                btnSelectActionPerformed(evt);
             }
         });
 
@@ -104,8 +104,8 @@ public class SelectItens extends javax.swing.JInternalFrame {
                 .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(205, 205, 205)
-                .addComponent(btnEditar)
-                .addContainerGap(166, Short.MAX_VALUE))
+                .addComponent(btnSelect)
+                .addContainerGap(161, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +119,7 @@ public class SelectItens extends javax.swing.JInternalFrame {
                     .addComponent(jLabel5)
                     .addComponent(txtQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(45, 45, 45)
-                .addComponent(btnEditar, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(btnSelect, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -130,26 +130,25 @@ public class SelectItens extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_cmbItemActionPerformed
 
-    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+    private void btnSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSelectActionPerformed
         ObjItens ite = (ObjItens) cmbItem.getSelectedItem();
         int quantidadeAtual = ite.getQuantidade();
         int quantidade = Integer.valueOf(txtQuantidade.getText());
         if(ite.getCodigo() == 0){
             JOptionPane.showMessageDialog(this, "Você deve selecionar um item!");
-        }else{
-            if(quantidadeAtual - quantidade >= 0){
+        }else if(quantidadeAtual - quantidade >= 0){
             ite.setQuantidade(quantidade);
             telaOperacoes.listaItens.add(ite);
+            telaOperacoes.carregarTabela();
             this.dispose();
         }else{
             JOptionPane.showMessageDialog(this, "A quantidade foi excedida! ("+quantidadeAtual+" no estoque)");
         }
-        }
-    }//GEN-LAST:event_btnEditarActionPerformed
+    }//GEN-LAST:event_btnSelectActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnEditar;
+    private javax.swing.JButton btnSelect;
     private javax.swing.JComboBox<String> cmbItem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel5;
