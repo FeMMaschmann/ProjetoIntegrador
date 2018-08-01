@@ -7,6 +7,7 @@ package telas;
 
 import dao.FornecedorDAO;
 import java.util.List;
+import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ObjFornecedor;
@@ -20,12 +21,18 @@ public class ListFornecedores extends javax.swing.JInternalFrame {
     /**
      * Creates new form ListCategoria
      */
-    public ListFornecedores() {
+    
+    
+    private JDesktopPane telaPrincipal;
+    
+    
+    public ListFornecedores(JDesktopPane telaPrincipal) {
         initComponents();
+        this.telaPrincipal = telaPrincipal;
         carregarTabela();
     }
     
-    private void carregarTabela(){
+    public void carregarTabela(){
         DefaultTableModel modelo = new DefaultTableModel();
         String[] colunas = {"Código", "Nome", "Telefone", "Produto", "E-mail"};
         modelo.setColumnIdentifiers(colunas);
@@ -75,6 +82,11 @@ public class ListFornecedores extends javax.swing.JInternalFrame {
         jScrollPane1.setViewportView(tableFornecedores);
 
         btnEditar.setText("EDITAR");
+        btnEditar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditarActionPerformed(evt);
+            }
+        });
 
         btnExcluir.setText("EXCLUIR");
         btnExcluir.addActionListener(new java.awt.event.ActionListener() {
@@ -134,6 +146,19 @@ public class ListFornecedores extends javax.swing.JInternalFrame {
             carregarTabela();
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
+
+    private void btnEditarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarActionPerformed
+        int linha = tableFornecedores.getSelectedRow();
+        if( linha == -1 ){
+            JOptionPane.showMessageDialog(this, "Você deve selecionar um item!!");
+        }else{
+            int codigo = (int) tableFornecedores.getValueAt(linha, 0);
+            FrmFornecedores FRM = new FrmFornecedores(codigo, this );
+            this.telaPrincipal.add( FRM );
+            FRM.setVisible( true );
+            
+        }
+    }//GEN-LAST:event_btnEditarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

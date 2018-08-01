@@ -18,10 +18,25 @@ public class FrmFornecedores extends javax.swing.JInternalFrame {
     /**
      * Creates new form FrmFornecedores
      */
+    
+    private boolean novo;
+    
+    
+    
+    
     public FrmFornecedores() {
         initComponents();
         lblCodigo.setText("");
+        novo = true;
     }
+    
+    
+    public FrmFornecedores(int codigo, ListFornecedores telaForn) {
+        initComponents();
+        lblCodigo.setText("");
+        novo = false;
+    }
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

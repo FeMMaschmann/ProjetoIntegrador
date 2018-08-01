@@ -157,13 +157,13 @@ public class TelaInicial extends javax.swing.JFrame {
     }//GEN-LAST:event_MenuCadastrarItemActionPerformed
 
     private void MenuContatoFornecedoresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuContatoFornecedoresActionPerformed
-        ListFornecedores list = new ListFornecedores();
+        ListFornecedores list = new ListFornecedores(jdpTelaInicial);
         jdpTelaInicial.add(list);
         list.setVisible(true);
     }//GEN-LAST:event_MenuContatoFornecedoresActionPerformed
 
     private void MenuEstoqueItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MenuEstoqueItemActionPerformed
-        ListItens list = new ListItens();
+        ListItens list = new ListItens(jdpTelaInicial);
         jdpTelaInicial.add(list);
         list.setVisible(true);
     }//GEN-LAST:event_MenuEstoqueItemActionPerformed
