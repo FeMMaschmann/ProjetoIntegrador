@@ -8,22 +8,20 @@ import model.ObjFornecedor;
 
 public class FornecedorDAO {
     public static void inserir(ObjFornecedor fnd){
-        String sql = "INSERT INTO fornecedores"
-                + " ( nome, telefone, produto, email ) "
+        String sql = "INSERT INTO fornecedores "
+                + " ( nome, telefone, email ) "
                 + " VALUES ("
                 + " '"+ fnd.getNome()               +"' , "
                 + " '"+ fnd.getTelefone()           +"' , "
-                + " '"+ fnd.getProduto()            +"' , "
                 + " '"+ fnd.getEmail()              +"' );" ;
         Conexao.executar(sql);
     }
     
     public static void editar(ObjFornecedor fnd){
-        String sql = "UPDATE fornecedores SET"
-                + " nome =     '"+ fnd.getNome() +"' "
-                + " telefone = '"+ fnd.getTelefone() +"' "
-                + " produto =  '"+ fnd.getProduto()+"' "
-                + " email =    '"+ fnd.getEmail()+"' "
+        String sql = "UPDATE fornecedores SET "
+                + " nome =      '"+ fnd.getNome()     +"' , "
+                + " telefone =  '"+ fnd.getTelefone() +"' , "
+                + " email =     '"+ fnd.getEmail()    +"' "
                 + " WHERE codigo = "+fnd.getCodigo() ;
         Conexao.executar(sql);
     }
@@ -46,8 +44,7 @@ public class FornecedorDAO {
                     fnd.setCodigo(rs.getInt(1));
                     fnd.setNome(rs.getString(2));
                     fnd.setTelefone(rs.getString(3));
-                    fnd.setProduto(rs.getString(4));
-                    fnd.setEmail(rs.getString(5));
+                    fnd.setEmail(rs.getString(4));
                     lista.add(fnd);
                 }
             } catch (Exception e) {
@@ -59,27 +56,25 @@ public class FornecedorDAO {
     }
     
     public static ObjFornecedor getFornecedorByCodigo(int codigo){
-        ObjFornecedor fornecedor = new ObjFornecedor();
+        ObjFornecedor fnd = new ObjFornecedor();
         
-        String sql = "SELECT codigo, nome, telefone, produto, email FROM fornecedores "
+        String sql = "SELECT codigo, nome, telefone, email FROM fornecedores "
                    + "WHERE codigo = " + codigo;
         ResultSet rs = Conexao.consultar(sql);
         
         if(rs != null){
             try {
                 while (rs.next()) {                    
-                    ObjFornecedor fnd = new ObjFornecedor();
                     fnd.setCodigo(rs.getInt(1));
                     fnd.setNome(rs.getString(2));
                     fnd.setTelefone(rs.getString(3));
-                    fnd.setProduto(rs.getString(4));
-                    fnd.setEmail(rs.getString(5));
+                    fnd.setEmail(rs.getString(4));
                 }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, e.toString());
             }
         }
-        return fornecedor;   
+        return fnd;   
     }
     
     

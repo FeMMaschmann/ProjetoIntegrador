@@ -50,9 +50,8 @@ public class FrmFornecedores extends javax.swing.JInternalFrame {
     private void carregarFornecedor(){
         txtNome.setText(fornecedores.getNome());
         txtTelefone.setText(fornecedores.getTelefone());
-        txtProduto.setText(fornecedores.getProduto());
         txtEmail.setText(fornecedores.getEmail());        
-        
+        lblCodigo.setText( String.valueOf( fornecedores.getCodigo() ) );
     }
     
 
@@ -67,8 +66,6 @@ public class FrmFornecedores extends javax.swing.JInternalFrame {
 
         jLabel4 = new javax.swing.JLabel();
         txtTelefone = new javax.swing.JTextField();
-        jLabel5 = new javax.swing.JLabel();
-        txtProduto = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         btnLimpar = new javax.swing.JButton();
         lblCodigo = new javax.swing.JLabel();
@@ -88,11 +85,6 @@ public class FrmFornecedores extends javax.swing.JInternalFrame {
         jLabel4.setText("Telefone:");
 
         txtTelefone.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-
-        jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Produto:");
-
-        txtProduto.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel1.setText("Código:");
@@ -150,13 +142,11 @@ public class FrmFornecedores extends javax.swing.JInternalFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
-                            .addComponent(jLabel5)
                             .addComponent(jLabel2))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTelefone)
-                            .addComponent(txtProduto)
-                            .addComponent(txtEmail))))
+                            .addComponent(txtEmail)
+                            .addComponent(txtTelefone))))
                 .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
@@ -176,13 +166,9 @@ public class FrmFornecedores extends javax.swing.JInternalFrame {
                     .addComponent(txtTelefone, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel5)
-                    .addComponent(txtProduto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 68, Short.MAX_VALUE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnSalvar, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnLimpar, javax.swing.GroupLayout.Alignment.TRAILING))
@@ -195,7 +181,6 @@ public class FrmFornecedores extends javax.swing.JInternalFrame {
     private void limparFormulario(){
         txtNome.setText("");
         txtTelefone.setText("");
-        txtProduto.setText("");
         txtEmail.setText("");
     }
     
@@ -205,15 +190,13 @@ public class FrmFornecedores extends javax.swing.JInternalFrame {
 
     private void btnSalvarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalvarActionPerformed
         String nome = txtNome.getText();
-        String produto = txtProduto.getText();
         String email = txtEmail.getText();
         String telefone = txtTelefone.getText();
-        if(nome.isEmpty() || email.isEmpty() || produto.isEmpty() || telefone.isEmpty() ){
+        if(nome.isEmpty() || email.isEmpty() || telefone.isEmpty() ){
             JOptionPane.showMessageDialog(this, "É obrigatória o preenchimento de todos os dados!");
         }else{
             ObjFornecedor fnd = new ObjFornecedor();
             fnd.setNome(nome);
-            fnd.setProduto(produto);
             fnd.setEmail(email);
             fnd.setTelefone(telefone);
         
@@ -237,11 +220,9 @@ public class FrmFornecedores extends javax.swing.JInternalFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel lblCodigo;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtNome;
-    private javax.swing.JTextField txtProduto;
     private javax.swing.JTextField txtTelefone;
     // End of variables declaration//GEN-END:variables
 }

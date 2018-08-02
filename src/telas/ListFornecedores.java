@@ -34,12 +34,12 @@ public class ListFornecedores extends javax.swing.JInternalFrame {
     
     public void carregarTabela(){
         DefaultTableModel modelo = new DefaultTableModel();
-        String[] colunas = {"Código", "Nome", "Telefone", "Produto", "E-mail"};
+        String[] colunas = {"Código", "Nome", "Telefone", "E-mail"};
         modelo.setColumnIdentifiers(colunas);
         List<ObjFornecedor> lista = FornecedorDAO.getFornecedores();
         for(ObjFornecedor fnd : lista){
             Object[] obj = {fnd.getCodigo(), fnd.getNome(), 
-                fnd.getTelefone(), fnd.getProduto(), fnd.getEmail()};
+                fnd.getTelefone(), fnd.getEmail()};
             modelo.addRow(obj);
         }
         tableFornecedores.setModel(modelo);
@@ -139,11 +139,17 @@ public class ListFornecedores extends javax.swing.JInternalFrame {
         if(linha == -1){
             JOptionPane.showMessageDialog(this, "Você deve selecionar uma categoria!");
         }else{
-            ObjFornecedor fnd = new ObjFornecedor();
-            int codigo = (int) tableFornecedores.getModel().getValueAt(linha, 0);
-            fnd.setCodigo(codigo);
-            FornecedorDAO.excluir(fnd);
-            carregarTabela();
+            int resposta = JOptionPane.showConfirmDialog(this,
+                    "Confirma a exclusão do Fornecedor? " ,
+                    "Excluir Fornecedor", 
+                    JOptionPane.YES_NO_OPTION);
+            if( resposta == JOptionPane.YES_OPTION ){
+                ObjFornecedor fnd = new ObjFornecedor();
+                int codigo = (int) tableFornecedores.getModel().getValueAt(linha, 0);
+                fnd.setCodigo(codigo);
+                FornecedorDAO.excluir(fnd);
+                carregarTabela();
+            }
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 

@@ -140,11 +140,17 @@ public class ListItens extends javax.swing.JInternalFrame {
         if(linha == -1){
             JOptionPane.showMessageDialog(this, "Você deve selecionar uma categoria!");
         }else{
-            ObjItens ite = new ObjItens();
-            int codigo = (int) tableItens.getModel().getValueAt(linha, 0);
-            ite.setCodigo(codigo);
-            ItensDAO.excluir(ite);
-            carregarTabela();
+            int resposta = JOptionPane.showConfirmDialog(this,
+                    "Confirma a exclusão do item ? " ,
+                    "Excluir item", 
+                    JOptionPane.YES_NO_OPTION);
+            if( resposta == JOptionPane.YES_OPTION ){
+                ObjItens ite = new ObjItens();
+                int codigo = (int) tableItens.getModel().getValueAt(linha, 0);
+                ite.setCodigo(codigo);
+                ItensDAO.excluir(ite);
+                carregarTabela();
+            }
         }
     }//GEN-LAST:event_btnExcluirActionPerformed
 

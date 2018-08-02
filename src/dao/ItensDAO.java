@@ -23,7 +23,7 @@ public class ItensDAO {
         String sql = "UPDATE itens SET "
                 + " nome =      '"+ ite.getNome()                   +"' , "
                 + " quantidade = "+ ite.getQuantidade()             +"  , "
-                + " codCidade =  "+ ite.getFornecedor().getCodigo() +"    "
+                + " codFornecedores =  "+ ite.getFornecedor().getCodigo() +"    "
                 + " WHERE codigo = "+ite.getCodigo();
         Conexao.executar(sql);
     }
@@ -73,21 +73,20 @@ public class ItensDAO {
                 +" f.nome, i.quantidade                       "
                 +" FROM itens i                               "
                 +" INNER JOIN fornecedores f ON i.codFornecedores = f.codigo"
-                +" WHERE codigo = " + codigo;
+                +" WHERE i.codigo = " + codigo;
         ResultSet rs = Conexao.consultar(sql);
         
         if(rs != null){
             try {
-                while (rs.next()) {                    
-                    ObjItens ite = new ObjItens();
-                    ite.setCodigo(rs.getInt(1));
-                    ite.setNome(rs.getString(3));
-                    ite.setQuantidade(rs.getInt(5));
+                while (rs.next()) {                   
+                    item.setCodigo(rs.getInt(1));
+                    item.setNome(rs.getString(3));
+                    item.setQuantidade(rs.getInt(5));
                     
                     ObjFornecedor fnd = new ObjFornecedor();
                     fnd.setCodigo(rs.getInt(2));
                     fnd.setNome(rs.getString(4));
-                    ite.setFornecedor(fnd);
+                    item.setFornecedor(fnd);
                     
                 }
             } catch (Exception e) {
@@ -97,6 +96,11 @@ public class ItensDAO {
         return item;     
     }
     
-    
+    public static void atualizar(ObjItens ite){
+        String sql = "UPDATE itens SET "
+                + " quantidade = quantidade-"+ ite.getQuantidade()  +"   "
+                + " WHERE codigo = "+ite.getCodigo();
+        Conexao.executar(sql);
+    }
     
 }

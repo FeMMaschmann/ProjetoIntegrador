@@ -26,7 +26,7 @@ public class FrmItens extends javax.swing.JInternalFrame {
     private boolean novo;
     private ObjItens itens;
     private ListItens telaItens;
-    private List<ObjFornecedor> listaFnd;
+    private List<ObjFornecedor> listaDeFornecedores;
     
     
     public FrmItens() {
@@ -39,8 +39,8 @@ public class FrmItens extends javax.swing.JInternalFrame {
     public FrmItens(int codigo, ListItens telaItens) {
         initComponents();
         itens = ItensDAO.getItensByCodigo(codigo);
-        carregarItens();
         carregarFornecedores();
+        carregarItens();
         novo = false;
         this.telaItens = telaItens;
     }
@@ -51,8 +51,8 @@ public class FrmItens extends javax.swing.JInternalFrame {
         txtQuantidade.setText( String.valueOf(q));
         lblCodigo.setText( String.valueOf( itens.getCodigo() ) );
         
-        for (int i = 1; i < listaFnd.size() ; i++) {
-            ObjFornecedor fnd = listaFnd.get( i );
+        for (int i = 1; i < listaDeFornecedores.size() ; i++) {
+            ObjFornecedor fnd = listaDeFornecedores.get( i );
             if( fnd.getCodigo() == itens.getFornecedor().getCodigo() ){
                 cmbFornecedor.setSelectedIndex( i );
                 break;
@@ -63,7 +63,7 @@ public class FrmItens extends javax.swing.JInternalFrame {
     
 
     private void carregarFornecedores(){
-        List<ObjFornecedor> listaDeFornecedores = FornecedorDAO.getFornecedores();
+        listaDeFornecedores = FornecedorDAO.getFornecedores();
         ObjFornecedor fake = new ObjFornecedor(0, "Selecione...");
         listaDeFornecedores.add(0,fake);
         

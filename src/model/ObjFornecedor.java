@@ -2,7 +2,7 @@ package model;
 
 public class ObjFornecedor {
     private int codigo;
-    private String nome, telefone, produto, email;
+    private String nome, telefone, email;
 
     public ObjFornecedor() {
     }
@@ -16,7 +16,6 @@ public class ObjFornecedor {
         this.codigo = codigo;
         this.nome = nome;
         this.telefone = telefone;
-        this.produto = produto;
         this.email = email;
     }
 
@@ -50,14 +49,6 @@ public class ObjFornecedor {
 
     public void setTelefone(String telefone) {
         this.telefone = telefone;
-    }
-
-    public String getProduto() {
-        return produto;
-    }
-
-    public void setProduto(String produto) {
-        this.produto = produto;
     }
 
     public String getEmail() {

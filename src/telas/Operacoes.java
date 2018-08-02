@@ -9,6 +9,7 @@ import dao.ItensDAO;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDesktopPane;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import model.ObjItens;
 
@@ -86,6 +87,11 @@ public class Operacoes extends javax.swing.JInternalFrame {
 
         BtnFim.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         BtnFim.setText("Finalizar Operação");
+        BtnFim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnFimActionPerformed(evt);
+            }
+        });
 
         tableItens.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -107,17 +113,17 @@ public class Operacoes extends javax.swing.JInternalFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(57, 57, 57)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(BtnAdd)
-                                .addGap(228, 228, 228)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(BtnExc))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(209, 209, 209)
+                        .addGap(177, 177, 177)
                         .addComponent(BtnFim)))
-                .addGap(0, 42, Short.MAX_VALUE))
+                .addContainerGap(28, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -127,10 +133,10 @@ public class Operacoes extends javax.swing.JInternalFrame {
                     .addComponent(BtnAdd)
                     .addComponent(BtnExc))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 230, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(BtnFim)
-                .addContainerGap(56, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 271, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(BtnFim, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(16, 16, 16))
         );
 
         pack();
@@ -143,8 +149,37 @@ public class Operacoes extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BtnAddActionPerformed
 
     private void BtnExcActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcActionPerformed
-        
+        int linha = tableItens.getSelectedRow();
+        if(linha == -1){
+            JOptionPane.showMessageDialog(this, "Você deve selecionar um item para retirar da tabela!");
+        }else{
+            int resposta = JOptionPane.showConfirmDialog(this,
+                    "Confirma a exclusão do Item? " ,
+                    "Excluir Item", 
+                    JOptionPane.YES_NO_OPTION);
+            if( resposta == JOptionPane.YES_OPTION ){
+                listaItens.remove(linha);
+                carregarTabela();
+            }
+        }
     }//GEN-LAST:event_BtnExcActionPerformed
+
+    private void BtnFimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnFimActionPerformed
+        int resposta = JOptionPane.showConfirmDialog(this,
+                    "Confirma o uso do Item? " ,
+                    "Terminar Operação", 
+                    JOptionPane.YES_NO_OPTION);
+            if( resposta == JOptionPane.YES_OPTION )
+                for(ObjItens ite : listaItens){
+                Object[] obj = { 
+                    ite.getCodigo(), 
+                    ite.getQuantidade()
+                };
+                ItensDAO.atualizar(ite);
+            }
+            listaItens.removeAll(listaItens);
+            carregarTabela();
+    }//GEN-LAST:event_BtnFimActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
