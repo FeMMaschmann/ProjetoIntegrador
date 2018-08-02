@@ -65,4 +65,38 @@ public class ItensDAO {
         
         return lista;
     }
+    
+    public static ObjItens getItensByCodigo(int codigo){
+        ObjItens item = new ObjItens();
+        
+        String sql = "SELECT i.codigo, f.codigo, i.nome,      "
+                +" f.nome, i.quantidade                       "
+                +" FROM itens i                               "
+                +" INNER JOIN fornecedores f ON i.codFornecedores = f.codigo"
+                +" WHERE codigo = " + codigo;
+        ResultSet rs = Conexao.consultar(sql);
+        
+        if(rs != null){
+            try {
+                while (rs.next()) {                    
+                    ObjItens ite = new ObjItens();
+                    ite.setCodigo(rs.getInt(1));
+                    ite.setNome(rs.getString(3));
+                    ite.setQuantidade(rs.getInt(5));
+                    
+                    ObjFornecedor fnd = new ObjFornecedor();
+                    fnd.setCodigo(rs.getInt(2));
+                    fnd.setNome(rs.getString(4));
+                    ite.setFornecedor(fnd);
+                    
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.toString());
+            }
+        }
+        return item;     
+    }
+    
+    
+    
 }

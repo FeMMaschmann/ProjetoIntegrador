@@ -57,4 +57,30 @@ public class FornecedorDAO {
         
         return lista;
     }
+    
+    public static ObjFornecedor getFornecedorByCodigo(int codigo){
+        ObjFornecedor fornecedor = new ObjFornecedor();
+        
+        String sql = "SELECT codigo, nome, telefone, produto, email FROM fornecedores "
+                   + "WHERE codigo = " + codigo;
+        ResultSet rs = Conexao.consultar(sql);
+        
+        if(rs != null){
+            try {
+                while (rs.next()) {                    
+                    ObjFornecedor fnd = new ObjFornecedor();
+                    fnd.setCodigo(rs.getInt(1));
+                    fnd.setNome(rs.getString(2));
+                    fnd.setTelefone(rs.getString(3));
+                    fnd.setProduto(rs.getString(4));
+                    fnd.setEmail(rs.getString(5));
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, e.toString());
+            }
+        }
+        return fornecedor;   
+    }
+    
+    
 }

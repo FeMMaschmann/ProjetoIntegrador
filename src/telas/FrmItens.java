@@ -38,8 +38,9 @@ public class FrmItens extends javax.swing.JInternalFrame {
     
     public FrmItens(int codigo, ListItens telaItens) {
         initComponents();
+        itens = ItensDAO.getItensByCodigo(codigo);
+        carregarItens();
         carregarFornecedores();
-        lblCodigo.setText("");
         novo = false;
         this.telaItens = telaItens;
     }

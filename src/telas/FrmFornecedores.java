@@ -6,8 +6,10 @@
 package telas;
 
 import dao.FornecedorDAO;
+import java.util.List;
 import javax.swing.JOptionPane;
 import model.ObjFornecedor;
+import model.ObjItens;
 
 /**
  *
@@ -20,6 +22,9 @@ public class FrmFornecedores extends javax.swing.JInternalFrame {
      */
     
     private boolean novo;
+    private ObjFornecedor fornecedores;
+    private ListFornecedores telaForn;
+    private List<ObjItens> listaItes;
     
     
     
@@ -33,8 +38,21 @@ public class FrmFornecedores extends javax.swing.JInternalFrame {
     
     public FrmFornecedores(int codigo, ListFornecedores telaForn) {
         initComponents();
-        lblCodigo.setText("");
+        fornecedores = FornecedorDAO.getFornecedorByCodigo(codigo);
+        carregarFornecedor();
         novo = false;
+        this.telaForn = telaForn;
+    }
+    
+    
+    
+    
+    private void carregarFornecedor(){
+        txtNome.setText(fornecedores.getNome());
+        txtTelefone.setText(fornecedores.getTelefone());
+        txtProduto.setText(fornecedores.getProduto());
+        txtEmail.setText(fornecedores.getEmail());        
+        
     }
     
 
@@ -199,7 +217,14 @@ public class FrmFornecedores extends javax.swing.JInternalFrame {
             fnd.setEmail(email);
             fnd.setTelefone(telefone);
         
-            FornecedorDAO.inserir(fnd);
+           if(novo){
+            FornecedorDAO.inserir(fnd);   
+           }else{
+               fnd.setCodigo(Integer.valueOf(lblCodigo.getText()));
+               FornecedorDAO.editar(fnd);
+               telaForn.carregarTabela();
+               this.dispose();
+           }
         }
         limparFormulario();
     }//GEN-LAST:event_btnSalvarActionPerformed
