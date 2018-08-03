@@ -6,6 +6,7 @@
 package telas;
 
 import dao.ItensDAO;
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JDesktopPane;
@@ -30,6 +31,9 @@ public class Operacoes extends javax.swing.JInternalFrame {
         initComponents();
         this.painelTelaInicial = painelTelaInicial;
         listaItens = new ArrayList<>();
+        carregarTabela();
+        Color minhaCor = new Color(174, 174, 174);
+        getContentPane().setBackground(minhaCor);
     }
     
     public void carregarTabela(){
@@ -62,7 +66,7 @@ public class Operacoes extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tableItens = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(102, 102, 102));
+        setBackground(new java.awt.Color(204, 204, 204));
         setClosable(true);
         setIconifiable(true);
         setMaximizable(true);

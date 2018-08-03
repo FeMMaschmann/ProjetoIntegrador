@@ -6,6 +6,7 @@
 package telas;
 
 import dao.FornecedorDAO;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.JDesktopPane;
 import javax.swing.JOptionPane;
@@ -30,6 +31,8 @@ public class ListFornecedores extends javax.swing.JInternalFrame {
         initComponents();
         this.telaPrincipal = telaPrincipal;
         carregarTabela();
+        Color minhaCor = new Color(174, 174, 174);
+        getContentPane().setBackground(minhaCor);
     }
     
     public void carregarTabela(){

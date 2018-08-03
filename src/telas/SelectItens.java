@@ -6,6 +6,7 @@
 package telas;
 
 import dao.ItensDAO;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -29,6 +30,8 @@ public class SelectItens extends javax.swing.JInternalFrame {
         initComponents();
         carregarItens();
         this.telaOperacoes = telaOperacoes;
+        Color minhaCor = new Color(174, 174, 174);
+        getContentPane().setBackground(minhaCor);
     }
     
     private void carregarItens(){

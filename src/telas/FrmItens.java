@@ -7,6 +7,7 @@ package telas;
 
 import dao.FornecedorDAO;
 import dao.ItensDAO;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
@@ -34,6 +35,8 @@ public class FrmItens extends javax.swing.JInternalFrame {
         carregarFornecedores();
         lblCodigo.setText("");
         novo = true;
+        Color minhaCor = new Color(174, 174, 174);
+        getContentPane().setBackground(minhaCor);
     }
     
     public FrmItens(int codigo, ListItens telaItens) {
@@ -43,6 +46,8 @@ public class FrmItens extends javax.swing.JInternalFrame {
         carregarItens();
         novo = false;
         this.telaItens = telaItens;
+        Color minhaCor = new Color(174, 174, 174);
+        getContentPane().setBackground(minhaCor);
     }
     
     private void carregarItens(){

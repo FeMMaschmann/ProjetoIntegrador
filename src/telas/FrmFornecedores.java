@@ -6,6 +6,7 @@
 package telas;
 
 import dao.FornecedorDAO;
+import java.awt.Color;
 import java.util.List;
 import javax.swing.JOptionPane;
 import model.ObjFornecedor;
@@ -33,6 +34,8 @@ public class FrmFornecedores extends javax.swing.JInternalFrame {
         initComponents();
         lblCodigo.setText("");
         novo = true;
+        Color minhaCor = new Color(174, 174, 174);
+        getContentPane().setBackground(minhaCor);
     }
     
     
@@ -42,6 +45,8 @@ public class FrmFornecedores extends javax.swing.JInternalFrame {
         carregarFornecedor();
         novo = false;
         this.telaForn = telaForn;
+        Color minhaCor = new Color(174, 174, 174);
+        getContentPane().setBackground(minhaCor);
     }
     
     
