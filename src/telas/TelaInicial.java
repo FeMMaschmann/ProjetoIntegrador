@@ -29,9 +29,9 @@ public class TelaInicial extends javax.swing.JFrame {
 
         jdpTelaInicial = new javax.swing.JDesktopPane();
         jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         MenuIniciar = new javax.swing.JMenu();
         MenuAbrirOp = new javax.swing.JMenuItem();
@@ -63,10 +63,6 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(204, 204, 204));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Clínica-Médica.png"))); // NOI18N
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 0, 100)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 204, 204));
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/Untitled-1.png"))); // NOI18N
-
         jLabel2.setFont(new java.awt.Font("Times New Roman", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(204, 204, 204));
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/logo.png"))); // NOI18N
@@ -74,10 +70,12 @@ public class TelaInicial extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(204, 204, 204));
         jLabel4.setText("Criado por invoked");
 
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/telas/imgBemVindo.png"))); // NOI18N
+
         jdpTelaInicial.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
-        jdpTelaInicial.setLayer(jLabel3, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdpTelaInicial.setLayer(jLabel2, javax.swing.JLayeredPane.DEFAULT_LAYER);
         jdpTelaInicial.setLayer(jLabel4, javax.swing.JLayeredPane.DEFAULT_LAYER);
+        jdpTelaInicial.setLayer(jLabel5, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jdpTelaInicialLayout = new javax.swing.GroupLayout(jdpTelaInicial);
         jdpTelaInicial.setLayout(jdpTelaInicialLayout);
@@ -87,8 +85,8 @@ public class TelaInicial extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 531, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(48, 48, 48)
-                .addComponent(jLabel3)
-                .addContainerGap(432, Short.MAX_VALUE))
+                .addComponent(jLabel5)
+                .addContainerGap(16, Short.MAX_VALUE))
             .addGroup(jdpTelaInicialLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel4)
@@ -101,16 +99,16 @@ public class TelaInicial extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jdpTelaInicialLayout.createSequentialGroup()
                 .addGroup(jdpTelaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jdpTelaInicialLayout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jLabel4))
-                    .addGroup(jdpTelaInicialLayout.createSequentialGroup()
                         .addGroup(jdpTelaInicialLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jdpTelaInicialLayout.createSequentialGroup()
-                                .addGap(79, 79, 79)
-                                .addComponent(jLabel3)))
+                                .addGap(85, 85, 85)
+                                .addComponent(jLabel5)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 174, Short.MAX_VALUE)
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jdpTelaInicialLayout.createSequentialGroup()
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jLabel4)))
                 .addContainerGap())
         );
 
@@ -277,8 +275,8 @@ public class TelaInicial extends javax.swing.JFrame {
     private javax.swing.JMenu MenuItens;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem2;
